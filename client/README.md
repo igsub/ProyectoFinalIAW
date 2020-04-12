@@ -9,6 +9,9 @@ npm install
 ```
 npm run serve
 ```
+```
+Pagina disponible en localhost, /map_locations
+```
 
 ### Compila y disminuye el tamaño de los archivos para producción.
 ```
