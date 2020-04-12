@@ -1,24 +1,27 @@
 # client
 
-## Project setup
+## Configuración del proyecto.
 ```
 npm install
 ```
 
-### Compiles and hot-reloads for development
+### Compilar e inicializar para desarrollo y pruebas.
 ```
 npm run serve
 ```
+```
+Pagina disponible en localhost, /map_locations
+```
 
-### Compiles and minifies for production
+### Compila y disminuye el tamaño de los archivos para producción.
 ```
 npm run build
 ```
 
-### Lints and fixes files
+### Identa y arregla archivos para un código mas legible. 
 ```
 npm run lint
 ```
 
-### Customize configuration
+### Customizar configuración.
 See [Configuration Reference](https://cli.vuejs.org/config/).
