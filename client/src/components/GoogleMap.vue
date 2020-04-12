@@ -29,6 +29,9 @@ export default {
     this.geolocate();
   },
   methods: {
+    /**
+     * Metodo que centra el mapa en la posicion indicada.
+     */
     geolocate: function() {
       navigator.geolocation.getCurrentPosition(position => {
         this.center = {
@@ -37,6 +40,9 @@ export default {
         };
       });
     },
+    /**
+     * Metodo que actualiza la lista de marcadores segun la lista de coordenadas recibida.
+     */
     update: function (newmarkers) {
       newmarkers.forEach(element => {
         this.markers.push({ 
@@ -45,6 +51,9 @@ export default {
         });
       });
     },
+    /**
+     * Metodo llamado por la componente padre (Map_Locations) para vaciar la lista de marcadores y limpiar el mapa.
+     */
     removeMarkers: function () {
       this.markers = [];
     }

@@ -85,12 +85,18 @@ export default {
     };
   },
   methods: {
+    /** 
+    Metodo que se acciona al presionar el boton de localizar y que genera un mensaje HTTP GET hacia el servidor de python para obtener la lista de coordenadas y luego actualizar el mapa.
+    */
     getMap() {
+      // Direccion del servidor python.
       const path = 'http://127.0.0.1:5000/map_locations';
+      // GET
       axios.get(path)
         .then((res) => {
+          // Obtiene el mensaje de la respuesta y lo muestra en la pagina.
           this.msg = res.data.message;          
-          // Update map
+          // Actualiza el mapa con la lista de coordenadas obtenida.
           this.$refs.googleMap.update(res.data.markers);
         })
         .catch((error) => {
@@ -98,16 +104,23 @@ export default {
           console.error(error);
         });
     },
+    /**
+     * Metodo que genera un mensaje HTTP POST hacia el servidor de python, con el contenido de los datos ingresados por el usuario.
+    */
     onSubmit(evt) {
       evt.preventDefault();
       if (this.controlInputs()){
+        // Direccion del servidor python.
         const path = 'http://127.0.0.1:5000/map_locations';
+        // Datos ingresados por el usuario.
         const payload = {
           input: this.inputValue,
           inputType: this.inputType,
         };
+        // POST
         axios.post(path, payload)
           .then(() => {
+            // Luego de finalizado el mensaje POST, realiza un GET para obtener la lista de coordenadas generada.
             this.getMap();
           })
           .catch((error) => {
@@ -117,13 +130,19 @@ export default {
           });
       };
     },
+    /**
+     * Metodo que se acciona al presionar el boton de remover marcadores y dispara el metodo de la componente GoogleMap para vaciar la lista de marcadores.
+     */
     removeMarkers() {
       this.$refs.googleMap.removeMarkers();
       this.msg = '';
     },
+    /**
+     * Metodo de control para que lo ingresado por el usuario no sea vacio.
+     */
     controlInputs(){
       if(this.inputValue == '' || this.inputType == ''){
-        alert('You must fill all input fields.');
+        alert('Debe completar todos los campos para poder localizar.');
         return false;
       }
       else 
